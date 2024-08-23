@@ -40,4 +40,5 @@ public class SampleFeatureTests
         
         Assert.AreEqual(1, SampleFeature.UniqueStrings.Count);
     }
+    
 }
