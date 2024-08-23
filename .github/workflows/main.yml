@@ -39,6 +39,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          unityVersion: 2022.3.33f1
           targetPlatform: WebGL
 
       # Output
