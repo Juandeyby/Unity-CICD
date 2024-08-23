@@ -14,7 +14,7 @@ jobs:
         projectPath:
           - test-project
         unityVersion:
-          - 2022.3.33f1
+          - 2022.3.34f1
     steps:
       # Checkout
       - name: Checkout repository
@@ -40,45 +40,45 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
-  build:
-    name: Build my project ✨
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        projectPath:
-          - test-project
-        unityVersion:
-          - 2022.3.33f1
-    steps:
-      # Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          lfs: true
+  # build:
+  #   name: Build my project ✨
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       projectPath:
+  #         - test-project
+  #       unityVersion:
+  #         - 2022.3.33f1
+  #   steps:
+  #     # Checkout
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #       with:
+  #         lfs: true
 
-      # Cache
-      - uses: actions/cache@v3
-        with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
+  #     # Cache
+  #     - uses: actions/cache@v3
+  #       with:
+  #         path: Library
+  #         key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+  #         restore-keys: |
+  #           Library-
 
-      # Build
-      - name: Build project
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          unityVersion: 2022.3.33f1
-          targetPlatform: StandaloneWindows64
-          allowDirtyBuild: true
+  #     # Build
+  #     - name: Build project
+  #       uses: game-ci/unity-builder@v4
+  #       env:
+  #         UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  #         UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+  #         UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+  #       with:
+  #         unityVersion: 2022.3.33f1
+  #         targetPlatform: StandaloneWindows64
+  #         allowDirtyBuild: true
 
-      # Output
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Build
-          path: build
+  #     # Output
+  #     - uses: actions/upload-artifact@v3
+  #       with:
+  #         name: Build
+  #         path: build
